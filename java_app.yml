@@ -8,10 +8,10 @@
   gather_facts: no
   tasks:
   - name: Downloading the WAR file to temp location
-    local_action: command aws s3 cp s3://dd-cdo-poc/uc1-loginwebapp/target/{{version}} /tmp
+    local_action: command aws s3 cp s3://dd-cdo-poc/uc1-loginwebapp/target/{{version}}.war /tmp
 
   - name: Copying the WAR file to target server
-    copy: src=/tmp/{{version}} dest=/var/lib/tomcat7/webapps
+    copy: src=/tmp/{{version}}.war dest=/var/lib/tomcat7/webapps
 
   - name: wait until the files are copied
     wait_for: timeout=30
