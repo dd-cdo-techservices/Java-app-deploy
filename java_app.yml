@@ -1,0 +1,25 @@
+# playbook to deploy Java Application WAR onto EC2 ubuntu
+# Created By: Sumanth
+
+---
+
+- hosts: java_appserver
+  become: true
+  gather_facts: no
+  tasks:
+  - name: Downloading the WAR file to temp location
+    local_action: command aws s3 cp s3://dd-cdo-poc/uc1-loginwebapp/jobs/JavaAppCI-Mavin/8/target/LoginWebApps.war /tmp
+
+  - name: Copying the WAR file to target server
+    copy: src=/tmp/LoginWebApps.war dest=/var/lib/tomcat7/webapps
+
+  - name: wait until the files are copied
+    wait_for: timeout=30
+
+  - name: Replace the DB Server IP in user registration page
+    become: true
+    shell: sed -i 's/localhost/50.0.2.20/g' /var/lib/tomcat7/webapps/LoginWebApps/userRegistration.jsp
+
+  - name: Replace the DB Server IP in login page
+    become: true
+    shell: sed -i 's/localhost/50.0.2.20/g' /var/lib/tomcat7/webapps/LoginWebApps/login.jsp
