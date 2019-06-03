@@ -8,7 +8,7 @@
   gather_facts: no
   tasks:
   - name: Downloading the WAR file to temp location
-    local_action: command aws s3 cp s3://dd-cdo-poc/uc1-loginwebapp/jobs/JavaAppCI-Mavin/8/target/LoginWebApps.war /tmp
+    local_action: command aws s3 cp s3://dd-cdo-poc/uc1-loginwebapp/target/{{version}} /tmp
 
   - name: Copying the WAR file to target server
     copy: src=/tmp/LoginWebApps.war dest=/var/lib/tomcat7/webapps

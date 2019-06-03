@@ -13,7 +13,7 @@ pipeline {
     stage('Deploy App') {
       steps {
 	echo 'Deploying Wordpress Application on AWS Node'
-        sh 'ansible-playbook -i targethost.ini java_app.yml'
+        sh 'ansible-playbook -i targethost.ini java_app.yml --extra-vars version=${Application_version}'
         cleanWs()
       }
     }
