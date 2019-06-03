@@ -11,15 +11,15 @@
     local_action: command aws s3 cp s3://dd-cdo-poc/uc1-loginwebapp/target/{{version}}.war /tmp
 
   - name: Copying the WAR file to target server
-    copy: src=/tmp/{{version}}.war dest=/var/lib/tomcat7/webapps
+    copy: src=/tmp/{{version}}.war dest=/var/lib/tomcat7/webapps/LoginWebApps.war
 
   - name: wait until the files are copied
     wait_for: timeout=30
 
   - name: Replace the DB Server IP in user registration page
     become: true
-    shell: sed -i 's/localhost/50.0.2.20/g' /var/lib/tomcat7/webapps/{{version}}/userRegistration.jsp
+    shell: sed -i 's/localhost/50.0.2.20/g' /var/lib/tomcat7/webapps/LoginWebApps/userRegistration.jsp
 
   - name: Replace the DB Server IP in login page
     become: true
-    shell: sed -i 's/localhost/50.0.2.20/g' /var/lib/tomcat7/webapps/{{version}}/login.jsp
+    shell: sed -i 's/localhost/50.0.2.20/g' /var/lib/tomcat7/webapps/LoginWebApps/login.jsp
