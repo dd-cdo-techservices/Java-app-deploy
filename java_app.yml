@@ -7,9 +7,6 @@
   become: true
   gather_facts: no
   tasks:
-  - name: Downloading the WAR file to temp location
-    local_action: copywar.sh
-
   - name: Copying the WAR file to target server
     copy: src=/tmp/LoginWebApps.war dest=/var/lib/tomcat7/webapps/LoginWebApps.war
 
