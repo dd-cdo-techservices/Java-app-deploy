@@ -17,12 +17,12 @@ pipeline {
 		sh(script: "aws s3 cp s3://dd-cdo-poc/$key /tmp/LoginWebApps.war", returnStdout: true)
 		      	     
 	      }
-      }
+      
 	      
 	echo 'Deploying Wordpress Application on AWS Node'
         sh 'ansible-playbook -i targethost.ini java_app.yml copywar.sh'
         cleanWs()
       }
-    
+    }
   }
 }
