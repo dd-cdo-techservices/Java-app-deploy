@@ -21,8 +21,16 @@ pipeline {
 	      
 	echo 'Deploying Wordpress Application on AWS Node'
         sh 'ansible-playbook -i targethost.ini java_app.yml'
-        cleanWs()
+      
       }
     }
+	
+	 stage('Results') {
+      steps {
+        hygieiaDeployPublishStep applicationName: 'Java', artifactDirectory: '/JavaAppCI-Mavin/target/', artifactGroup: 'com.test', artifactName: '*.jar', artifactVersion: '', buildStatus: 'Success', environmentName: 'Dev'
+	      cleanWs()
+      }
+    }
+	
   }
 }
