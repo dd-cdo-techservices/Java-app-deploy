@@ -27,7 +27,7 @@ pipeline {
 	
 	 stage('Results') {
       steps {
-        hygieiaDeployPublishStep applicationName: 'Java', artifactDirectory: '/JavaAppCI-Mavin/target/', artifactGroup: 'com.test', artifactName: '*.jar', artifactVersion: '', buildStatus: 'Success', environmentName: 'Dev'
+        hygieiaDeployPublishStep applicationName: 'Java', artifactDirectory: '/JavaAppCI-Mavin/target/', artifactGroup: 'com.test', artifactName: '*.jar', artifactVersion: '2.2.2-SNAPSHOT', buildStatus: 'Success', environmentName: 'Dev'
 	      cleanWs()
       }
     }
