@@ -13,7 +13,7 @@ pipeline {
     stage('Deploy App') {
       steps {
 	      script{
-		  sh 'sudo rm /tmp/LoginWeb*.war'
+		
 		      sh 'bash copywar.sh' 
 		      
 	      }
