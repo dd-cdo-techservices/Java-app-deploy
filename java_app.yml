@@ -15,8 +15,8 @@
 
   - name: Replace the DB Server IP in user registration page
     become: true
-    shell: sed -i 's/localhost/50.0.2.20/g' /var/lib/tomcat7/webapps/LoginWebApps/userRegistration.jsp
+    shell: sed -i 's/localhost/192.168.2.20/g' /var/lib/tomcat7/webapps/LoginWebApps/userRegistration.jsp
 
   - name: Replace the DB Server IP in login page
     become: true
-    shell: sed -i 's/localhost/50.0.2.20/g' /var/lib/tomcat7/webapps/LoginWebApps/login.jsp
+    shell: sed -i 's/localhost/192.168.2.20/g' /var/lib/tomcat7/webapps/LoginWebApps/login.jsp
